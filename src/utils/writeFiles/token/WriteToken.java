@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -71,12 +73,20 @@ public class WriteToken{
         sb.append("import java.io.PrintWriter;\n");
         sb.append("import java.util.HashMap;\n");
         sb.append("import java.util.Map;\n");
+        sb.append("import java.util.Date;\n");
         sb.append("import java.util.logging.Logger;\n\n");
         sb.append("/**\n");
         sb.append(" * @author LT\n");
         sb.append(" */\n");
         sb.append("public class AuthenticationInterceptor implements HandlerInterceptor {\n\n");
         sb.append("    private Logger logger = Logger.getLogger(\""+pb.getProjectName()+"\");\n\n");
+        sb.append("    private static String jwtkey=\"@TTIVY@\";\n\n");
+        sb.append("    public static String getToken(String userid) {\n");
+        sb.append("        String token= JWT.create().withAudience(userid)\n");
+        sb.append("                .withExpiresAt(new Date(System.currentTimeMillis()+60000))\n");
+        sb.append("                .sign(Algorithm.HMAC256(jwtkey));\n");
+        sb.append("        return token;\n");
+        sb.append("    }\n\n");
         sb.append("    @Override\n");
         sb.append("    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {\n");
         sb.append("        String token = httpServletRequest.getHeader(\"token\");// 从 http 请求头中取出 token\n");
@@ -88,9 +98,9 @@ public class WriteToken{
         sb.append("                return false;\n");
         sb.append("            }\n");
         sb.append("            // 获取 token 中的 user id\n");
-        sb.append("            String userId = JWT.decode(token).getAudience().get(0);\n");
+        sb.append("            //String userId = JWT.decode(token).getAudience().get(0);\n");
         sb.append("            // 验证 token\n");
-        sb.append("            JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(userId)).build();\n");
+        sb.append("            JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(jwtkey)).build();\n");
         sb.append("            jwtVerifier.verify(token);\n");
         sb.append("            return true;\n");
         sb.append("        } catch (Exception e) {\n");
@@ -108,7 +118,9 @@ public class WriteToken{
         sb.append("                                HttpServletResponse httpServletResponse,\n");
         sb.append("                                Object o, Exception e) {\n");
         sb.append("    }\n\n");
-        sb.append("    //请求不通过，返回错误信息给客户端\n");
+        sb.append("    /**\n");
+        sb.append("     * 请求不通过，返回错误信息给客户端\n");
+        sb.append("    */\n");
         sb.append("    private void responseMessage(HttpServletResponse response,  String  message) throws IOException {\n");
         sb.append("        //response.setContentType(\"text/html;charset=UTF-8\");\n");
         sb.append("        response.setContentType(\"application/json;charset=utf-8\");\n");
@@ -122,23 +134,28 @@ public class WriteToken{
         sb.append("        out.close();\n");
         sb.append("    }\n");
 
-        sb.append("    //使用方法\n");
+        sb.append("    /**\n");
+        sb.append("     * 使用方法\n");
+        sb.append("    */\n");
         sb.append("    /*@RequestMapping(value=\"/login\", produces = MediaType.APPLICATION_JSON_VALUE)\n");
-        sb.append("    public String login(@RequestParam(value = \"id\") String id) throws IOException {\n");
-        sb.append("        Chatuser resultSelect =iChatuserService.selectChatuserById(id);\n");
+        sb.append("    public String login(@RequestParam(value = \"username\") String username,@RequestParam(value = \"password\") String password) throws IOException {\n");
+        sb.append("        Map<String, Object> resultMap= new HashMap<>();\n");
+        sb.append("        Map<Object, Object> paramMap=new HashMap<>();\n");
+        sb.append("        paramMap.put(\"username\",username);\n");
+        sb.append("        paramMap.put(\"password\",password);\n");
+        sb.append("        List<User> list =iUserService.selectUserByParam(paramMap);\n");
         sb.append("        ObjectMapper objectMapper = new ObjectMapper();\n");
-        sb.append("        Map<String, Object> loginMap = new HashMap<>();\n");
-        sb.append("        loginMap.put(\"token\",getToken(resultSelect.getId().toString()));\n");
-        sb.append("        loginMap.put(\"userInfo\",resultSelect);\n");
-        sb.append("        return objectMapper.writeValueAsString(loginMap);\n");
-        sb.append("    }\n");
-        sb.append("    private String getToken(String id) {\n");
-        sb.append("        String token=\"\";\n");
-        sb.append("        token= JWT.create().withAudience(id)\n");
-        sb.append("                .withExpiresAt(new Date(System.currentTimeMillis()+60000))\n");
-        sb.append("                .sign(Algorithm.HMAC256(id));\n");
-        sb.append("        return token;\n");
+        sb.append("        if(list.size()>0){\n");
+        sb.append("            resultMap.put(\"token\", AuthenticationInterceptor.getToken(list.get(0).getId().toString()));\n");
+        sb.append("            resultMap.put(\"userInfo\",list.get(0));\n");
+        sb.append("        }\n");
+        sb.append("        else{\n");
+        sb.append("            resultMap.put(\"status\", \"-1\");\n");
+        sb.append("            resultMap.put(\"msg\", \"登录失败！\");\n");
+        sb.append("        }\n");
+        sb.append("        return objectMapper.writeValueAsString(resultMap);\n");
         sb.append("    }*/\n");
+
 
         sb.append("}\n");
 

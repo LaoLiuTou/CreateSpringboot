@@ -73,7 +73,14 @@ public class WriteApp {
         sb.append("    }\n");
         sb.append("    @Override\n");
         sb.append("    public void run(ApplicationArguments args) throws Exception {\n");
-        sb.append("        System.out.println(\"通过实现ApplicationRunner接口，在spring boot项目启动后打印参数\");\n");
+        sb.append("        System.out.println(\"->->->->->->->->\");\n");
+        sb.append("        System.out.println(\"->->->->->->->->->\");\n");
+        sb.append("        System.out.println(\"->->->->->->->->->->\");\n");
+        sb.append("        System.out.println(\"->->->->->->->->->->->\");\n");
+        sb.append("        System.out.println(\"->->->->->->->->->->->->\");\n");
+        sb.append("        System.out.println(\"->->->->->->->->->->->->->\");\n");
+        sb.append("        System.out.println(\"->->->->->->->->->->->->->->\");\n");
+        sb.append("        System.out.println(\"->->->->->->->->->->->->->->->项目启动成功！\");\n");
         sb.append("    }\n");
         sb.append("}\n\n");
         sb.append("//war\n");
