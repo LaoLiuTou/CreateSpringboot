@@ -152,6 +152,18 @@ public class WritePom {
         sb.append("            <artifactId>spring-boot-configuration-processor</artifactId>\n");
         sb.append("            <optional>true</optional>\n");
         sb.append("        </dependency>\n\n\n");
+        sb.append("        <!-- 数据验证 -->\n");
+        sb.append("        <dependency>\n");
+        sb.append("            <groupId>org.hibernate.validator</groupId>\n");
+        sb.append("            <artifactId>hibernate-validator</artifactId>\n");
+        sb.append("            <version>6.1.5.Final</version>\n");
+        sb.append("        </dependency>\n");
+        sb.append("        <dependency>\n");
+        sb.append("            <groupId>javax.validation</groupId>\n");
+        sb.append("            <artifactId>validation-api</artifactId>\n");
+        sb.append("            <version>2.0.1.Final</version>\n");
+        sb.append("        </dependency>\n");
+
         sb.append("    </dependencies>\n\n\n");
         sb.append("    <build>\n");
         sb.append("        <plugins>\n");

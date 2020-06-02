@@ -57,12 +57,15 @@ public class WriteBean {
             sb.append("package com."+pb.getProjectName().toLowerCase()+".entity."+tableName.toLowerCase()+";\n\n");
             sb.append("import java.util.Date;\n");
             sb.append("import com.fasterxml.jackson.annotation.JsonFormat;\n");
+            sb.append("import org.springframework.validation.annotation.Validated;\n");
             sb.append("import org.springframework.format.annotation.DateTimeFormat;\n\n");
             sb.append("/**\n");
             sb.append(" * @author LT\n");
             sb.append(" */\n");
+            sb.append("@Validated\n");
             sb.append("public class "+lowerName+" {\n\n");
-            
+            sb.append(" //@NotNull(message = \"不能为空\") @NotEmpty(message = \"不能为空\")\n");
+
             
             
             out.write(sb.toString().getBytes("utf-8"));
