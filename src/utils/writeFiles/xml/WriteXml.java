@@ -1,6 +1,7 @@
 package utils.writeFiles.xml;
 
 import utils.ProjectBean;
+import utils.writeFiles.UpLowUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,7 +24,7 @@ public class WriteXml {
 		String status="success";
 		String url,dirs;
 		ProjectBean pb=new ProjectBean();
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		dirs=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/";
 		try {
@@ -51,7 +52,7 @@ public class WriteXml {
         	dir.mkdirs();
             file.createNewFile();
         }
-        String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+        String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
             //FileOutputStream out=new FileOutputStream(file,true);        
             FileOutputStream out=new FileOutputStream(file);        
             StringBuffer sb=new StringBuffer();
@@ -61,7 +62,7 @@ public class WriteXml {
             sb.append("\"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">\n");
             sb.append("<mapper namespace=\"com."+pb.getProjectName().toLowerCase()+".mapper."+tableName.toLowerCase()+".I"+lowerName+"Mapper\"> \n");
             if(!pKey.equals("")&&pKey!=null){
-            	sb.append("	<select id=\"select"+tableName+"By"+toUpperCaseFirstOne(pKey.toLowerCase())+"\" parameterType=\"String\" resultType=\""+lowerName+"\">\n");
+            	sb.append("	<select id=\"select"+tableName+"By"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"\" parameterType=\"String\" resultType=\""+lowerName+"\">\n");
             	sb.append("		SELECT * FROM "+tableName+" WHERE "+pKey.toUpperCase()+"=#{"+pKey.toLowerCase()+"}\n");
             	sb.append("	</select>\n");
             	sb.append("\n");
@@ -103,7 +104,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void appendSelectFiles(String tableName,String colName,String type,String dbType) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -147,7 +148,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void addSelectEnd(String tableName,String pKey,String dbType) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -195,7 +196,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void addCountEnd(String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -223,7 +224,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void appendUpdateFiles(String tableName,String colName) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -247,7 +248,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void addUpdateEnd(String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -281,7 +282,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void appendInsertFiles1(String tableName,String colName) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -302,7 +303,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void appendInsertFiles2(String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -324,7 +325,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void appendInsertFiles3(String tableName,String colName) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -348,7 +349,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void addInsertEnd(String tableName,String pKey,String dbType) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -387,7 +388,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void addmulStart(String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -417,7 +418,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void addmulInsertFiles1(String tableName,String colName) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -438,7 +439,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void addmulInsertFiles2(String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -460,7 +461,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void addmulInsertFiles3(String tableName,String colName) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
         File file=new File(url);
@@ -483,7 +484,7 @@ public class WriteXml {
 	 * @return
 	 */
 	public  void addmulInsertEnd(String tableName,String pKey,String dbType) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/resources/mybatis/mapper/"+tableName.toLowerCase()+"/"+lowerName+".xml";
 		 
@@ -503,23 +504,6 @@ public class WriteXml {
         log.info("创建文件"+tableName+".xml 成功！") ;       
         out.close();
     }
-	//首字母转小写
-    public static String toLowerCaseFirstOne(String s)
-    {
-        if(Character.isLowerCase(s.charAt(0)))
-            return s;
-        else
-            return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
-    }
-    //首字母转大写
-    public static String toUpperCaseFirstOne(String s)
-    {
-        if(Character.isUpperCase(s.charAt(0)))
-            return s;
-        else
-            return (new StringBuilder()).append(Character.toUpperCase(s.charAt(0))).append(s.substring(1)).toString();
-    }
- 
  
 
 }

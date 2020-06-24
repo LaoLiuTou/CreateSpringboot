@@ -2,6 +2,7 @@ package utils.writeFiles.pom;
 
 import jdbc.JdbcBean;
 import utils.ProjectBean;
+import utils.writeFiles.UpLowUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -54,7 +55,7 @@ public class WritePom {
         //FileOutputStream out=new FileOutputStream(file,true);
         FileOutputStream out=new FileOutputStream(file);
         StringBuffer sb=new StringBuffer();
-        String lowerName= toUpperCaseFirstOne(pb.getProjectName().toLowerCase()) ;
+        String lowerName= UpLowUtil.toUpperCaseFirstOne(pb.getProjectName().toLowerCase()) ;
         sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
         sb.append("<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n");
         sb.append("         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\n");
@@ -181,26 +182,6 @@ public class WritePom {
         log.info(sb.toString()) ;
         log.info("创建文件"+"pom.xml 成功！") ;
         out.close();
-    }
-
-
-
-
-    //首字母转小写
-    public static String toLowerCaseFirstOne(String s)
-    {
-        if(Character.isLowerCase(s.charAt(0)))
-            return s;
-        else
-            return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
-    }
-    //首字母转大写
-    public static String toUpperCaseFirstOne(String s)
-    {
-        if(Character.isUpperCase(s.charAt(0)))
-            return s;
-        else
-            return (new StringBuilder()).append(Character.toUpperCase(s.charAt(0))).append(s.substring(1)).toString();
     }
 
 }

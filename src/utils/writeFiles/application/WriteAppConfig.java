@@ -2,6 +2,7 @@ package utils.writeFiles.application;
 
 import jdbc.JdbcBean;
 import utils.ProjectBean;
+import utils.writeFiles.UpLowUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -53,8 +54,6 @@ public class WriteAppConfig {
         //FileOutputStream out=new FileOutputStream(file,true);
         FileOutputStream out=new FileOutputStream(file);
         StringBuffer sb=new StringBuffer();
-        String lowerName= toUpperCaseFirstOne(pb.getProjectName().toLowerCase()) ;
-
 
         sb.append("spring.application.name="+pb.getProjectName().toLowerCase()+"\n");
         sb.append("server.port=9999\n\n");
@@ -75,24 +74,5 @@ public class WriteAppConfig {
         out.close();
     }
 
-
-
-
-    //首字母转小写
-    public static String toLowerCaseFirstOne(String s)
-    {
-        if(Character.isLowerCase(s.charAt(0)))
-            return s;
-        else
-            return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
-    }
-    //首字母转大写
-    public static String toUpperCaseFirstOne(String s)
-    {
-        if(Character.isUpperCase(s.charAt(0)))
-            return s;
-        else
-            return (new StringBuilder()).append(Character.toUpperCase(s.charAt(0))).append(s.substring(1)).toString();
-    }
 
 }

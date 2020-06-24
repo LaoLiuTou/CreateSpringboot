@@ -1,6 +1,7 @@
 package utils.writeFiles.controller;
 
 import utils.ProjectBean;
+import utils.writeFiles.UpLowUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,7 +20,7 @@ public class WriteController {
 	 * @return
 	 */
 	public String writeController(String tableName,String pKey){
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		String status="success";
 		String url,dirs;
 		ProjectBean pb=new ProjectBean();
@@ -43,7 +44,7 @@ public class WriteController {
 	 * @return
 	 */
 	public  void createFiles(String dirs,String url,String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
         File file=new File(url);
         File dir=new File(dirs);
@@ -102,7 +103,7 @@ public class WriteController {
 	 * @return
 	 */
 	public  void addAddFunction(String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/java/com/"+pb.getProjectName().toLowerCase()
 		+"/controller/"+tableName+"/"+lowerName+"Controller.java";
@@ -127,8 +128,8 @@ public class WriteController {
         sb.append("			else{\n");
         sb.append("			    i"+lowerName+"Service.add"+lowerName+"("+tableName.toLowerCase()+");\n");
         sb.append("			    resultMap.put(\"status\", \"0\");\n");
-        sb.append("			    resultMap.put(\"msg\", "+tableName.toLowerCase()+".get"+toUpperCaseFirstOne(pKey.toLowerCase())+"());\n");
-        sb.append("			    logger.info(\"新建成功，主键：\"+"+tableName.toLowerCase()+".get"+toUpperCaseFirstOne(pKey.toLowerCase())+"());\n");
+        sb.append("			    resultMap.put(\"msg\", "+tableName.toLowerCase()+".get"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"());\n");
+        sb.append("			    logger.info(\"新建成功，主键：\"+"+tableName.toLowerCase()+".get"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"());\n");
         sb.append("			}\n");
         sb.append("		} catch (Exception e) {\n");
         sb.append("			resultMap.put(\"status\", \"-1\");\n"); 
@@ -149,7 +150,7 @@ public class WriteController {
 	 * @return
 	 */
 	public  void addmulAddFunction(String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/java/com/"+pb.getProjectName().toLowerCase()
 				+"/controller/"+tableName+"/"+lowerName+"Controller.java";
@@ -174,7 +175,7 @@ public class WriteController {
 		sb.append("			i"+lowerName+"Service.muladd"+lowerName+"(list);\n"); 
 		sb.append("			resultMap.put(\"status\", \"0\");\n"); 
 		sb.append("			resultMap.put(\"msg\", \"新建成功\");\n"); 
-		sb.append("			logger.info(\"新建成功，主键：\"+"+tableName.toLowerCase()+".get"+toUpperCaseFirstOne(pKey.toLowerCase())+"());\n"); 
+		sb.append("			logger.info(\"新建成功，主键：\"+"+tableName.toLowerCase()+".get"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"());\n");
 		sb.append("		} catch (Exception e) {\n"); 
 		sb.append("			resultMap.put(\"status\", \"-1\");\n"); 
 		sb.append("			resultMap.put(\"msg\", \"新建失败！\");\n"); 
@@ -195,7 +196,7 @@ public class WriteController {
 	 * @return
 	 */
 	public  void addSelectFunction(String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/java/com/"+pb.getProjectName().toLowerCase()
 		+"/controller/"+tableName+"/"+lowerName+"Controller.java";
@@ -209,12 +210,12 @@ public class WriteController {
         sb.append("	public Map<String, Object> select("+lowerName+" "+tableName.toLowerCase()+"){\n");
         sb.append("		Map<String, Object> resultMap= new HashMap<>();\n");
         sb.append("		try {\n"); 
-        sb.append("			if("+tableName.toLowerCase()+".get"+toUpperCaseFirstOne(pKey.toLowerCase())+"()==null){\n"); 
+        sb.append("			if("+tableName.toLowerCase()+".get"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"()==null){\n");
         sb.append("				resultMap.put(\"status\", \"-1\");\n"); 
         sb.append("				resultMap.put(\"msg\", \"参数不能为空！\");\n"); 
         sb.append("			}\n"); 
         sb.append("			else{\n"); 
-        sb.append("				"+lowerName+" resultSelect=i"+lowerName+"Service.select"+lowerName+"By"+toUpperCaseFirstOne(pKey.toLowerCase())+"("+tableName.toLowerCase()+".get"+toUpperCaseFirstOne(pKey.toLowerCase())+"()+\"\");\n"); 
+        sb.append("				"+lowerName+" resultSelect=i"+lowerName+"Service.select"+lowerName+"By"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"("+tableName.toLowerCase()+".get"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"()+\"\");\n");
         sb.append("				resultMap.put(\"status\", \"0\");\n"); 
         sb.append("				resultMap.put(\"msg\", resultSelect);\n"); 
         sb.append("			}\n"); 
@@ -238,7 +239,7 @@ public class WriteController {
 	 * @return
 	 */
 	public  void addUpdateFunction(String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/java/com/"+pb.getProjectName().toLowerCase()
 		+"/controller/"+tableName+"/"+lowerName+"Controller.java";
@@ -252,7 +253,7 @@ public class WriteController {
         sb.append("	public Map update("+lowerName+" "+tableName.toLowerCase()+"){\n");
         sb.append("		Map<String, Object> resultMap= new HashMap<>();\n");
         sb.append("		try {\n"); 
-        sb.append("			if("+tableName.toLowerCase()+".get"+toUpperCaseFirstOne(pKey.toLowerCase())+"()==null){\n"); 
+        sb.append("			if("+tableName.toLowerCase()+".get"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"()==null){\n");
         sb.append("				resultMap.put(\"status\", \"-1\");\n"); 
         sb.append("				resultMap.put(\"msg\", \"参数不能为空！\");\n"); 
         sb.append("			}\n"); 
@@ -260,7 +261,7 @@ public class WriteController {
         sb.append("				int resultUpdate=i"+lowerName+"Service.update"+lowerName+"("+tableName.toLowerCase()+");\n");
         sb.append("				resultMap.put(\"status\", \"0\");\n"); 
         sb.append("				resultMap.put(\"msg\", \"更新成功！\");\n"); 
-        sb.append("				logger.info(\"更新成功，主键：\"+"+tableName.toLowerCase()+".get"+toUpperCaseFirstOne(pKey.toLowerCase())+"());\n"); 
+        sb.append("				logger.info(\"更新成功，主键：\"+"+tableName.toLowerCase()+".get"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"());\n");
         sb.append("			}\n"); 
         sb.append("		} catch (Exception e) {\n"); 
         sb.append("			resultMap.put(\"status\", \"-1\");\n"); 
@@ -280,7 +281,7 @@ public class WriteController {
 	 * @return
 	 */
 	public  void addDeleteFunction(String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/java/com/"+pb.getProjectName().toLowerCase()
 		+"/controller/"+tableName+"/"+lowerName+"Controller.java";
@@ -294,15 +295,15 @@ public class WriteController {
         sb.append("	public Map<String, Object> delete("+lowerName+" "+tableName.toLowerCase()+"){\n");
         sb.append("		Map<String, Object> resultMap= new HashMap<>();\n");
         sb.append("		try {\n"); 
-        sb.append("			if("+tableName.toLowerCase()+".get"+toUpperCaseFirstOne(pKey.toLowerCase())+"()==null){\n"); 
+        sb.append("			if("+tableName.toLowerCase()+".get"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"()==null){\n");
         sb.append("				resultMap.put(\"status\", \"-1\");\n"); 
         sb.append("				resultMap.put(\"msg\", \"参数不能为空！\");\n"); 
         sb.append("			}\n"); 
         sb.append("			else{\n"); 
-        sb.append("				int resultDelete=i"+lowerName+"Service.delete"+lowerName+"("+tableName.toLowerCase()+".get"+toUpperCaseFirstOne(pKey.toLowerCase())+"()"+"+\"\");\n");
+        sb.append("				int resultDelete=i"+lowerName+"Service.delete"+lowerName+"("+tableName.toLowerCase()+".get"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"()"+"+\"\");\n");
         sb.append("				resultMap.put(\"status\", \"0\");\n"); 
         sb.append("				resultMap.put(\"msg\", \"删除成功！\");\n"); 
-        sb.append("				logger.info(\"删除成功，主键：\"+"+tableName.toLowerCase()+".get"+toUpperCaseFirstOne(pKey.toLowerCase())+"());\n"); 
+        sb.append("				logger.info(\"删除成功，主键：\"+"+tableName.toLowerCase()+".get"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"());\n");
         sb.append("			}\n"); 
         sb.append("		} catch (Exception e) {\n"); 
         sb.append("			resultMap.put(\"status\", \"-1\");\n"); 
@@ -324,7 +325,7 @@ public class WriteController {
 	 * @return
 	 */
 	public  void addListFunctionStart(String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/java/com/"+pb.getProjectName().toLowerCase()
 		+"/controller/"+tableName+"/"+lowerName+"Controller.java";
@@ -357,7 +358,7 @@ public class WriteController {
 	 * @return
 	 */
 	public  void addListFunctionEnd(String tableName,String pKey) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/java/com/"+pb.getProjectName().toLowerCase()
 		+"/controller/"+tableName+"/"+lowerName+"Controller.java";
@@ -393,7 +394,7 @@ public class WriteController {
 	 */
 	public  void addListFunctionParam(String tableName,String colName,String type) throws IOException{
 		Logger log = Logger.getLogger("Creater");
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/java/com/"+pb.getProjectName().toLowerCase()
 		+"/controller/"+tableName+"/"+lowerName+"Controller.java";
@@ -411,28 +412,11 @@ public class WriteController {
         	sb.append("			paramMap.put(\""+colName.toLowerCase()+"To\", sdf.parse("+colName.toLowerCase()+"To));\n");
         }
         else{
-        	sb.append("			paramMap.put(\""+colName.toLowerCase()+"\","+lowerName.toLowerCase()+".get"+toUpperCaseFirstOne(colName.toLowerCase())+"());\n");
+        	sb.append("			paramMap.put(\""+colName.toLowerCase()+"\","+lowerName.toLowerCase()+".get"+UpLowUtil.toUpperCaseFirstOne(colName.toLowerCase())+"());\n");
         }
         out.write(sb.toString().getBytes("utf-8"));
         log.info(sb.toString()) ;        
         out.close();
-    }
-	 
-	//首字母转小写
-    public static String toLowerCaseFirstOne(String s)
-    {
-        if(Character.isLowerCase(s.charAt(0)))
-            return s;
-        else
-            return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
-    }
-    //首字母转大写
-    public static String toUpperCaseFirstOne(String s)
-    {
-        if(Character.isUpperCase(s.charAt(0)))
-            return s;
-        else
-            return (new StringBuilder()).append(Character.toUpperCase(s.charAt(0))).append(s.substring(1)).toString();
     }
  
 }

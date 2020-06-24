@@ -1,6 +1,7 @@
 package utils.writeFiles.entity;
 
 import utils.ProjectBean;
+import utils.writeFiles.UpLowUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,7 +21,7 @@ public class WriteBean {
 		
 		String status="success";
 		String url,dirs;
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/java/com/"+pb.getProjectName().toLowerCase()
 			+"/entity/"+tableName.toLowerCase()+"/"+lowerName+".java";
@@ -42,7 +43,7 @@ public class WriteBean {
 	 * @return
 	 */
 	public  void createFiles(String dirs,String url,String tableName) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
         File file=new File(url);
         File dir=new File(dirs);
@@ -79,7 +80,7 @@ public class WriteBean {
 	 * @return
 	 */
 	public  void appendFiles(String tableName,String colName,String comments,String type) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/java/com/"+pb.getProjectName().toLowerCase()
 		+"/entity/"+tableName.toLowerCase()+"/"+lowerName+".java";
@@ -94,35 +95,35 @@ public class WriteBean {
         		type.toUpperCase().equals("INT")||type.toUpperCase().equals("BIGINT")){
 	        sb.append("	/** "+comments+" */\n"); 
 	        sb.append("	private  Long "+colName.toLowerCase()+";\n");
-	        sb.append("	public Long get"+toUpperCaseFirstOne(colName.toLowerCase())+"() {\n");
+	        sb.append("	public Long get"+UpLowUtil.toUpperCaseFirstOne(colName.toLowerCase())+"() {\n");
 	        sb.append("		return "+colName.toLowerCase()+";\n");
 	        sb.append("	}\n");
-	        sb.append("	public void set"+toUpperCaseFirstOne(colName.toLowerCase())+"(Long "+colName.toLowerCase()+") {\n");
+	        sb.append("	public void set"+UpLowUtil.toUpperCaseFirstOne(colName.toLowerCase())+"(Long "+colName.toLowerCase()+") {\n");
 	        sb.append("		this."+colName.toLowerCase()+" = "+colName.toLowerCase()+";\n");
 	        sb.append("	}\n\n");
         }
         else if(type.toUpperCase().equals("DATE")){
 	        sb.append("	/** "+comments+" */\n"); 
-	        //sb.append("	@JsonFormat(pattern = \"yyyy-MM-dd\",timezone=\"GMT+8\")\n");
 	        sb.append("	@DateTimeFormat(pattern = \"yyyy-MM-dd\")\n");
-	        sb.append("	private  Date "+colName.toLowerCase()+";\n");
-	        sb.append("	public Date get"+toUpperCaseFirstOne(colName.toLowerCase())+"() {\n");
+			sb.append("	@JsonFormat(pattern = \"yyyy-MM-dd\")\n");
+			sb.append("	private  Date "+colName.toLowerCase()+";\n");
+	        sb.append("	public Date get"+UpLowUtil.toUpperCaseFirstOne(colName.toLowerCase())+"() {\n");
 	        sb.append("		return "+colName.toLowerCase()+";\n");
 	        sb.append("	}\n");
-	        sb.append("	public void set"+toUpperCaseFirstOne(colName.toLowerCase())+"(Date "+colName.toLowerCase()+") {\n");
+	        sb.append("	public void set"+UpLowUtil.toUpperCaseFirstOne(colName.toLowerCase())+"(Date "+colName.toLowerCase()+") {\n");
 	        sb.append("		this."+colName.toLowerCase()+" = "+colName.toLowerCase()+";\n");
 	        sb.append("	}\n\n");
         	
         }
         else if(type.toUpperCase().equals("DATETIME")){
 	        sb.append("	/** "+comments+" */\n"); 
-	        //sb.append("	@JsonFormat(pattern = \"yyyy-MM-dd HH:mm:ss\",timezone=\"GMT+8\")\n");
 	        sb.append("	@DateTimeFormat(pattern = \"yyyy-MM-dd HH:mm:ss\")\n");
-	        sb.append("	private  Date "+colName.toLowerCase()+";\n");
-	        sb.append("	public Date get"+toUpperCaseFirstOne(colName.toLowerCase())+"() {\n");
+			sb.append("	@JsonFormat(pattern = \"yyyy-MM-dd HH:mm:ss\")\n");
+			sb.append("	private  Date "+colName.toLowerCase()+";\n");
+	        sb.append("	public Date get"+UpLowUtil.toUpperCaseFirstOne(colName.toLowerCase())+"() {\n");
 	        sb.append("		return "+colName.toLowerCase()+";\n");
 	        sb.append("	}\n");
-	        sb.append("	public void set"+toUpperCaseFirstOne(colName.toLowerCase())+"(Date "+colName.toLowerCase()+") {\n");
+	        sb.append("	public void set"+UpLowUtil.toUpperCaseFirstOne(colName.toLowerCase())+"(Date "+colName.toLowerCase()+") {\n");
 	        sb.append("		this."+colName.toLowerCase()+" = "+colName.toLowerCase()+";\n");
 	        sb.append("	}\n\n");
         	
@@ -130,10 +131,10 @@ public class WriteBean {
         else {
 	        sb.append("	/** "+comments+" */\n"); 
 	        sb.append("	private  String "+colName.toLowerCase()+";\n");
-	        sb.append("	public String get"+toUpperCaseFirstOne(colName.toLowerCase())+"() {\n");
+	        sb.append("	public String get"+UpLowUtil.toUpperCaseFirstOne(colName.toLowerCase())+"() {\n");
 	        sb.append("		return "+colName.toLowerCase()+";\n");
 	        sb.append("	}\n");
-	        sb.append("	public void set"+toUpperCaseFirstOne(colName.toLowerCase())+"(String "+colName.toLowerCase()+") {\n");
+	        sb.append("	public void set"+UpLowUtil.toUpperCaseFirstOne(colName.toLowerCase())+"(String "+colName.toLowerCase()+") {\n");
 	        sb.append("		this."+colName.toLowerCase()+" = "+colName.toLowerCase()+";\n");
 	        sb.append("	}\n\n");
         	
@@ -150,7 +151,7 @@ public class WriteBean {
 	 * @return
 	 */
 	public  void addEnd(String tableName) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
 		String url=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/java/com/"+pb.getProjectName().toLowerCase()
 		+"/entity/"+tableName.toLowerCase()+"/"+lowerName+".java";
@@ -167,23 +168,5 @@ public class WriteBean {
         log.info("创建文件"+tableName+".java 成功！") ;      
         out.close();
     }
- 
-	//首字母转小写
-    public static String toLowerCaseFirstOne(String s)
-    {
-        if(Character.isLowerCase(s.charAt(0)))
-            return s;
-        else
-            return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
-    }
-    //首字母转大写
-    public static String toUpperCaseFirstOne(String s)
-    {
-        if(Character.isUpperCase(s.charAt(0)))
-            return s;
-        else
-            return (new StringBuilder()).append(Character.toUpperCase(s.charAt(0))).append(s.substring(1)).toString();
-    }
- 
 
 }

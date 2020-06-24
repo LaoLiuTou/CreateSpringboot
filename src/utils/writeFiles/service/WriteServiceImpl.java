@@ -1,6 +1,7 @@
 package utils.writeFiles.service;
 
 import utils.ProjectBean;
+import utils.writeFiles.UpLowUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +19,7 @@ public class WriteServiceImpl {
 	 * @return
 	 */
 	public String writeServiceImpl(String pKey,String tableName){
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		String status="success";
 		String url,dirs;
 		ProjectBean pb=new ProjectBean();
@@ -42,7 +43,7 @@ public class WriteServiceImpl {
 	 * @return
 	 */
 	public  void createFiles(String dirs,String url,String pKey,String tableName) throws IOException{
-		String lowerName= toUpperCaseFirstOne(tableName.toLowerCase()) ;
+		String lowerName= UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase()) ;
 		ProjectBean pb=new ProjectBean();
         File file=new File(url);
         File dir=new File(dirs);
@@ -77,8 +78,8 @@ public class WriteServiceImpl {
             sb.append("	* @return\n");
             sb.append("	*/\n");
             sb.append("	@Override");
-            sb.append("	public "+lowerName+" select"+lowerName+"By"+toUpperCaseFirstOne(pKey.toLowerCase())+"(String id){\n");
-            sb.append("		return i"+lowerName+"Mapper.select"+tableName+"By"+toUpperCaseFirstOne(pKey.toLowerCase())+"(id);\n");  
+            sb.append("	public "+lowerName+" select"+lowerName+"By"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"(String id){\n");
+            sb.append("		return i"+lowerName+"Mapper.select"+tableName+"By"+UpLowUtil.toUpperCaseFirstOne(pKey.toLowerCase())+"(id);\n");
             sb.append("	}\n\n");
             sb.append("	/**\n");
             sb.append("	* 通过查询参数获取信息\n");
@@ -128,27 +129,9 @@ public class WriteServiceImpl {
             
             out.write(sb.toString().getBytes("utf-8"));
             log.info(sb.toString()) ;      
-            log.info("创建文件"+toUpperCaseFirstOne(tableName.toLowerCase())+"ServiceImpl.java成功！") ;        
+            log.info("创建文件"+UpLowUtil.toUpperCaseFirstOne(tableName.toLowerCase())+"ServiceImpl.java成功！") ;
         out.close();
     }
- 
-	 
-	//首字母转小写
-    public static String toLowerCaseFirstOne(String s)
-    {
-        if(Character.isLowerCase(s.charAt(0)))
-            return s;
-        else
-            return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
-    }
-    //首字母转大写
-    public static String toUpperCaseFirstOne(String s)
-    {
-        if(Character.isUpperCase(s.charAt(0)))
-            return s;
-        else
-            return (new StringBuilder()).append(Character.toUpperCase(s.charAt(0))).append(s.substring(1)).toString();
-    }
- 
+
 
 }
