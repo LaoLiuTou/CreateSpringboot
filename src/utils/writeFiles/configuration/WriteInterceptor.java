@@ -1,12 +1,10 @@
-package utils.writeFiles.interceptor;
+package utils.writeFiles.configuration;
 
 import utils.ProjectBean;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 public class WriteInterceptor {
@@ -26,7 +24,7 @@ public class WriteInterceptor {
                     +"/"+"InterceptorConfig.java";
             dirs=pb.getProjectUrl()+"/"+pb.getProjectName()+"/"+"src/main/java/com/"+pb.getProjectName().toLowerCase()
                     +"/";
-            createAppFiles(dirs,url);
+            createInterceptorFiles(dirs,url);
 
 
 
@@ -43,7 +41,7 @@ public class WriteInterceptor {
      *
      * @return
      */
-    public static  void createAppFiles(String dirs,String url) throws IOException{
+    public static  void createInterceptorFiles(String dirs,String url) throws IOException{
 
         ProjectBean pb=new ProjectBean();
         File file=new File(url);

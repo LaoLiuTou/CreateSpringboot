@@ -3,11 +3,12 @@ import utils.CopyFiles;
 import utils.ProjectBean;
 import utils.writeFiles.application.WriteApp;
 import utils.writeFiles.application.WriteAppConfig;
+import utils.writeFiles.configuration.WriteTaskPool;
 import utils.writeFiles.controller.WriteController;
 import utils.writeFiles.druid.WriteDruid;
 import utils.writeFiles.entity.WriteBean;
 import utils.writeFiles.iml.WriteIml;
-import utils.writeFiles.interceptor.WriteInterceptor;
+import utils.writeFiles.configuration.WriteInterceptor;
 import utils.writeFiles.logger.WriteLogger;
 import utils.writeFiles.mapper.WriteMapper;
 import utils.writeFiles.pom.WritePom;
@@ -15,6 +16,7 @@ import utils.writeFiles.service.WriteService;
 import utils.writeFiles.service.WriteServiceImpl;
 import utils.writeFiles.test.WriteTest;
 import utils.writeFiles.token.WriteToken;
+import utils.writeFiles.utils.WriteFileUpload;
 import utils.writeFiles.xml.WriteXml;
 
 import java.io.IOException;
@@ -87,6 +89,12 @@ public class Creater {
 
         //test
         WriteTest.writeTest();
+
+        //文件上传
+        WriteFileUpload.writeFileUpload();
+
+        //线程池
+        WriteTaskPool.writeTaskPoolConfig();
 
         log.info("Over!!!");
     }
@@ -270,7 +278,7 @@ public class Creater {
      */
     public static List getTables(){
         List tableList = new ArrayList();
-        JdbcBean jb=new JdbcBean();
+        /*JdbcBean jb=new JdbcBean();
 
         Connection con = null; //表示数据库的连接对象
         Statement stmt = null;  //表示数据库的更新操作
@@ -296,9 +304,9 @@ public class Creater {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+*/
 
-
-        //tableList.add("user");
+        tableList.add("members");
         //tableList.add("rl_lov");
         //tableList.add("sickness");
 
