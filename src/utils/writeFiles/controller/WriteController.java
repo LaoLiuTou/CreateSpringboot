@@ -167,10 +167,10 @@ public class WriteController {
 		sb.append("	public Map<String, Object>  muladd(HttpServletRequest request,"+lowerName+" "+tableName.toLowerCase()+"){\n");
 		sb.append("		Map<String, Object> resultMap=new HashMap<>();\n");
 		sb.append("		try {\n"); 
-		sb.append("			String data=request.getParameter(\"data\");\n"); 
+		sb.append("			String muldata=request.getParameter(\"muldatamuldata\");\n");
 		sb.append("			ObjectMapper objectMapper = new ObjectMapper();\n"); 
 		sb.append("			JavaType javaType = objectMapper.getTypeFactory().constructParametricType(ArrayList.class, "+lowerName+".class);\n"); 
-		sb.append("			List<"+lowerName+"> list = (List<"+lowerName+">)objectMapper.readValue(data, javaType);\n"); 
+		sb.append("			List<"+lowerName+"> list = (List<"+lowerName+">)objectMapper.readValue(muldata, javaType);\n");
 		//sb.append("			List<"+lowerName+"> list=(List<"+lowerName+">) JSONArray.toCollection(dataJA,"+lowerName+".class);\n"); 
 		sb.append("			i"+lowerName+"Service.muladd"+lowerName+"(list);\n"); 
 		sb.append("			resultMap.put(\"status\", \"0\");\n"); 
@@ -337,7 +337,7 @@ public class WriteController {
         sb.append("\n");
         sb.append("	@RequestMapping(value=\"/list"+lowerName+"\", produces = MediaType.APPLICATION_JSON_VALUE)\n");
         sb.append("	public Map<String, Object> list(@RequestParam(value = \"page\", defaultValue = \"1\") int page,\n");
-        sb.append("	        @RequestParam(value = \"size\", defaultValue = \"10\") int size,\n");
+        sb.append("	        @RequestParam(value = \"size\", defaultValue = \"0\") int size,\n");
         sb.append("	        @RequestParam(value = \"orderby\", defaultValue = \"ID DESC\") String orderby,\n");
         sb.append("	        HttpServletRequest request, "+lowerName+" "+tableName.toLowerCase()+"){\n");
         sb.append("		Map<String, Object> resultMap=new HashMap<>();\n");
