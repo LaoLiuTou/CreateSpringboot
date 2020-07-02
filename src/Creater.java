@@ -278,7 +278,7 @@ public class Creater {
      */
     public static List getTables(){
         List tableList = new ArrayList();
-        /*JdbcBean jb=new JdbcBean();
+        JdbcBean jb=new JdbcBean();
 
         Connection con = null; //表示数据库的连接对象
         Statement stmt = null;  //表示数据库的更新操作
@@ -304,9 +304,9 @@ public class Creater {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-*/
 
-        tableList.add("members");
+
+        //tableList.add("members");
         //tableList.add("rl_lov");
         //tableList.add("sickness");
 

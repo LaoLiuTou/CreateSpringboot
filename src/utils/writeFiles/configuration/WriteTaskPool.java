@@ -102,7 +102,7 @@ public class WriteTaskPool {
         sb.append("    /*@Async(\"taskExecutor\")\n");
         sb.append("    public void testTaskPool(String task) throws InterruptedException {\n");
         sb.append("        System.out.println(\"任务\"+task);\n");
-        sb.append("    */}\n");
+        sb.append("    }*/\n");
 
 
         sb.append("}\n");
